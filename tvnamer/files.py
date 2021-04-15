@@ -494,7 +494,7 @@ class Renamer(object):
             os.makedirs(new_dir, exist_ok=True)
             print("Created directory %s" % new_dir)
 
-        if os.path.isfile(new_fullpath):
+        if os.path.isfile(new_fullpath) and not Config['symlink_files_enable']:
             # If the destination exists, raise exception unless force is True
             if not force:
                 raise OSError(
@@ -502,16 +502,23 @@ class Renamer(object):
                     % (new_fullpath, self.filename)
                 )
 
-        if always_copy:
-            # Same partition, but forced to copy
-            copy_file(self.filename, new_fullpath)
+        if Config['symlink_files_enable']:
+            if os.path.isfile(new_fullpath):
+                print("Skipping creating symlink as it exists: %s" % new_fullpath)
+            else:
+                print("Creating symlink: %s" % new_fullpath)
+                os.symlink(self.filename, new_fullpath)
         else:
-            # Same partition, just rename the file to move it
-            rename_file(self.filename, new_fullpath)
+            if always_copy:
+                # Same partition, but forced to copy
+                copy_file(self.filename, new_fullpath)
+            else:
+                # Same partition, just rename the file to move it
+                rename_file(self.filename, new_fullpath)
 
-            # Leave a symlink behind if configured to do so
-            if leave_symlink:
-                symlink_file(new_fullpath, self.filename)
+                # Leave a symlink behind if configured to do so
+                if leave_symlink:
+                    symlink_file(new_fullpath, self.filename)
 
         self.filename = new_fullpath
 

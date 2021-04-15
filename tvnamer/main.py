@@ -83,6 +83,7 @@ def get_move_destination(episode):
             "month": episode.episodenumbers[0].month,
             "day": episode.episodenumbers[0].day,
             "originalfilename": episode.originalfilename,
+            "newfilename": episode.generate_filename(),
         }
     elif isinstance(episode, NoSeasonEpisodeInfo):
         dest_dir = Config["move_files_destination"] % {
@@ -91,6 +92,7 @@ def get_move_destination(episode):
                 format_episode_numbers(episode.episodenumbers)
             ),
             "originalfilename": episode.originalfilename,
+            "newfilename": episode.generate_filename(),
         }
     elif isinstance(episode, EpisodeInfo):
         dest_dir = Config["move_files_destination"] % {
@@ -100,6 +102,7 @@ def get_move_destination(episode):
                 format_episode_numbers(episode.episodenumbers)
             ),
             "originalfilename": episode.originalfilename,
+            "newfilename": episode.generate_filename(),
         }
     else:
         raise RuntimeError("Unhandled episode subtype of %s" % type(episode))
@@ -273,7 +276,11 @@ def process_file(tvdb_instance, episode):
                     )
                 return
             elif Config["always_rename"]:
-                do_rename_file(cnamer, new_name)
+                if os.path.isfile("%s/%s" % (get_move_destination(episode), new_name)):
+                    print("File exists, aborting.")
+                    return
+                if not Config['symlink_files_enable']:
+                    do_rename_file(cnamer, new_name)
                 if Config["move_files_enable"]:
                     if Config["move_files_destination_is_filepath"]:
                         do_move_file(
