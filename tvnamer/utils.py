@@ -38,7 +38,7 @@ def warn(text):
     # type: (str) -> None
     """Displays message to sys.stderr
     """
-    print(text, file=sys.stderr)
+    LOG.warning(text)
 
 
 def split_extension(filename):
