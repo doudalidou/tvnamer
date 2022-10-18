@@ -227,7 +227,7 @@ class BaseInfo(metaclass=ABCMeta):
             raise UserAbort("%s" % error)
         else:
             # Series was found, use corrected series name
-            self.seriesname = _replace_output_series_name(show['seriesname'])
+            self.seriesname = _replace_output_series_name(show['seriesName'])
 
         if isinstance(self, DatedEpisodeInfo):
             # Date-based episode
