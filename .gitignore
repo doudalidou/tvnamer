@@ -8,3 +8,5 @@ htmlcov/*
 /.mypy_cache
 /.eggs
 /dist
+.vscode/settings.json
+tests/help/*

@@ -9,7 +9,7 @@ from helpers import attr
 
 @attr("functional")
 def test_ambiguity_fix():
-    """Test amiguous eisode number fix
+    """Test ambiguous episode number fix
     """
 
     conf = """
