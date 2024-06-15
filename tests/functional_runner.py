@@ -21,6 +21,7 @@ created correctly, in a way that nosetest displays useful info when an
 expected file is not found.
 """
 
+import logging
 import os
 import sys
 import shutil
@@ -29,6 +30,10 @@ import subprocess
 import unicodedata
 
 import coverage
+
+
+LOG = logging.getLogger(__name__)
+
 
 try:
     # os.path.relpath was added in 2.6, use custom implimentation if not found
@@ -96,7 +101,7 @@ def make_dummy_files(files, location):
 def clear_temp_dir(location):
     """Removes file or directory at specified location
     """
-    print("Clearing %s" % location)
+    LOG.info("Clearing %s" % location)
     shutil.rmtree(location)
 
 
@@ -145,8 +150,8 @@ def run_tvnamer(with_files, with_flags = None, with_input = "", with_config = No
     # Construct command
     cmd = [sys.executable, "-m", "tvnamer"] + conf_args + with_flags + files
 
-    print("Running command:")
-    print(" ".join(cmd))
+    LOG.debug("Running command:")
+    LOG.debug(" ".join(cmd))
 
     proc = subprocess.Popen(
         cmd,
@@ -192,14 +197,14 @@ def verify_out_data(out_data, expected_files, expected_returncode = 0):
     If an assertion fails, nosetest will handily print the stdout/etc.
     """
 
-    print("Return code: %d" % out_data['returncode'])
+    LOG.debug("Return code: %d" % out_data['returncode'])
 
-    print("Expected files:", expected_files)
-    print("Got files:     ", [x for x in out_data['files']])
+    LOG.debug("Expected files: %s" % expected_files)
+    LOG.debug("Got files:     %s" % [x for x in out_data['files']])
 
-    print("\n" + "*" * 20 + "\n")
-    print("output:\n")
-    print(out_data['output'])
+    LOG.debug("\n" + "*" * 20 + "\n")
+    LOG.debug("output:\n")
+    LOG.debug(out_data['output'])
 
     # Check number of files
     if len(expected_files) != len(out_data['files']):
