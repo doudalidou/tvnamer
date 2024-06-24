@@ -53,8 +53,7 @@ def transform_filename(fname):
     # type: (str) -> str
 
     if Config['titlecase_filename']:
-        from tvnamer._titlecase import titlecase
-        fname = titlecase(fname)
+        fname = fname.title()
 
     if Config['lowercase_filename']:
         fname = fname.lower()
