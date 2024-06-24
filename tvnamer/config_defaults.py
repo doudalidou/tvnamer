@@ -40,7 +40,6 @@ if typing.TYPE_CHECKING:
         'output_filename_replacements': List[TypedReplacement],
         'move_files_fullpath_replacements': List[TypedReplacement],
         'language': str,
-        'search_all_languages': bool,
         'move_files_enable': bool,
         'move_files_confirmation': bool,
         'move_files_lowercase_destination': bool,
@@ -162,9 +161,6 @@ defaults = {
 
     # Language to (try) and retrieve episode data in
     'language': 'en',
-
-    # Search in all possible languages
-    'search_all_languages': True,
 
     # Create symlinks instead of renaming files
     'symlink_files_enable': False,
