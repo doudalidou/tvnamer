@@ -133,10 +133,10 @@ files['misc'] = [
     'seasonnumber': 2, 'episodenumbers': [1],
     'episodenames': ['In the Game']},
 
-    {'input': 'Sid.The.Science.Kid.E11.The.Itchy.Tag.WS.ABC.DeF-HIJK',
+    {'input': 'Sid.The.Science.Kid.E07.The.Itchy.Tag.WS.ABC.DeF-HIJK',
     'parsedseriesname': 'Sid The Science Kid',
     'correctedseriesname': 'Sid the Science Kid',
-    'seasonnumber': None, 'episodenumbers': [11],
+    'seasonnumber': None, 'episodenumbers': [7],
     'episodenames': ['The Itchy Tag']},
 
     {'input': 'Total Access - [01x01]',
@@ -318,7 +318,7 @@ files['anime'] = [
     'parsedseriesname': 'True Mazinger',
     'correctedseriesname': 'Mazinger Edition Z: The Impact!',
     'seasonnumber': None, 'episodenumbers': [7],
-    'episodenames': ['Legend! The Mechanical Beasts of Bardos!']},
+    'episodenames': ['Legend! The Mechanical Beasts of Bardos Island!']},
 
     {'input': '[BSS]_Tokyo_Magnitude_8.0_-_02_[0E5C4A40].mkv',
     'parsedseriesname': 'tokyo magnitude 8.0',
@@ -350,7 +350,7 @@ files['date_based'] = [
     'parsedseriesname': 'yes we canberra',
     'correctedseriesname': 'Yes We Canberra',
     'episodenumbers': [datetime.date(2010, 8, 18)],
-    'episodenames': ['Episode 4']},
+    'episodenames': ['Every Candidate Is …']},
 ]
 
 files['x_of_x'] = [

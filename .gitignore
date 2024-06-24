@@ -8,5 +8,7 @@ htmlcov/*
 /.mypy_cache
 /.eggs
 /dist
-.vscode/settings.json
+.vscode/*
 tests/help/*
+*.sqlite
+config_defaults.py

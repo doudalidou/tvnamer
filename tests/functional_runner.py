@@ -199,8 +199,8 @@ def verify_out_data(out_data, expected_files, expected_returncode = 0):
 
     LOG.debug("Return code: %d" % out_data['returncode'])
 
-    LOG.debug("Expected files: %s" % expected_files)
-    LOG.debug("Got files:     %s" % [x for x in out_data['files']])
+    LOG.debug("Expected files:\t%s" % expected_files)
+    LOG.debug("Got files:\t\t%s" % [x for x in out_data['files']])
 
     LOG.debug("\n" + "*" * 20 + "\n")
     LOG.debug("output:\n")

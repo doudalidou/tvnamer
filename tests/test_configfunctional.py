@@ -261,8 +261,8 @@ def test_replace_ands():
         with_config = conf,
         with_input = "",
         run_on_directory = True)
-
-    expected_files = ['Brothers & Sisters - [05x16] - Home Is Where The Fort Is.avi']
+    
+    expected_files = ['Brothers & Sisters - [05x16] - Home Is Where the Fort Is.avi']
 
     verify_out_data(out_data, expected_files)
 
@@ -294,7 +294,7 @@ def test_replace_ands_in_output_also():
         with_input = "",
         run_on_directory = True)
 
-    expected_files = ['Brothers and Sisters - [05x16] - Home Is Where The Fort Is.avi']
+    expected_files = ['Brothers and Sisters - [05x16] - Home Is Where the Fort Is.avi']
 
     verify_out_data(out_data, expected_files)
 
