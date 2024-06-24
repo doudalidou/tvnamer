@@ -5,6 +5,7 @@
 
 import os
 import datetime
+import functools
 from typing import Any
 
 from helpers import assertEquals
@@ -15,6 +16,7 @@ from test_files import files
 
 from tvdb_api import Tvdb
 
+from tvnamer.utils import LOG
 
 def verify_name_gen(curtest, tvdb_instance):
     # type: (Any, Tvdb) -> None
@@ -44,10 +46,9 @@ def verify_name_gen(curtest, tvdb_instance):
 def test_name_generation_on_testfiles():
     # type: () -> None
 
-    # Test data stores episode names in English, language= is normally set
-    # via the configuration, same with search_all_languages.
+    # Test data stores episode names in English.
 
-    tvdb_instance = Tvdb(search_all_languages=True, cache=True, language='en', apikey=TVNAMER_API_KEY)
+    tvdb_instance = Tvdb(cache=True, language='en', apikey=TVNAMER_API_KEY)
     for category, testcases in files.items():
         for curtest in testcases:
             verify_name_gen(curtest, tvdb_instance)

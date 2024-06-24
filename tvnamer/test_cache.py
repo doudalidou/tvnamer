@@ -66,23 +66,20 @@ class FileCacheDict(MutableMapping):
 
 
 class FileCache(requests_cache.backends.base.BaseCache):
-    def __init__(self, _name, fc_base_dir, **options):
+    def __init__(self, fc_base_dir, **options):
         super(FileCache, self).__init__(**options)
         self.responses = FileCacheDict(base_dir=fc_base_dir)
         self.keys_map = FileCacheDict(base_dir=fc_base_dir)
 
-
-requests_cache.backends.registry['tvnamer_file_cache'] = FileCache
-
-
 def get_test_cache_session():
     here = os.path.dirname(os.path.abspath(__file__))
+    cacher = requests_cache.FileCache(
+        cache_name=os.path.join(here, "http_cache"),
+        serializer='json',
+    )
     sess = requests_cache.CachedSession(
-        backend="tvnamer_file_cache",
-        fc_base_dir=os.path.join(here, "..", "tests", "httpcache"),
         include_get_headers=True,
         allowable_codes=(200, 404),
+        match_headers=['Accept-Language'],
     )
-    import tvdb_api
-    sess.cache.create_key = types.MethodType(tvdb_api.create_key, sess.cache)
     return sess

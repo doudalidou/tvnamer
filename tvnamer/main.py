@@ -423,7 +423,6 @@ def tvnamer(paths):
 
     tvdb_instance = tvdb_api.Tvdb(
         interactive=not Config["select_first"],
-        search_all_languages=Config["search_all_languages"],
         language=Config["language"],
         dvdorder=dvdorder,
         cache=cache,
