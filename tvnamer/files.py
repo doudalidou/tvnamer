@@ -269,6 +269,8 @@ class FileParser(object):
         _, filename = os.path.split(self.path)
 
         filename = _apply_replacements_input(filename)
+        filename = _apply_replacements_input(self.path)
+        filename = self.path
 
         for cmatcher in self.compiled_regexs:
             match = cmatcher.match(filename)
