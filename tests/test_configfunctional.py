@@ -54,6 +54,7 @@ def test_never_skip_file():
 
     conf = """
     {"batch": true,
+    "titlecase_filename": false,
     "skip_file_on_error": false}
     """
 
@@ -148,6 +149,7 @@ def test_replace_with_underscore():
     conf = """
     {"custom_filename_character_blacklist": " ",
     "replace_blacklisted_characters_with": "_",
+      "normalize_unicode_filenames": false,
     "always_rename": true,
     "select_first": true}
     """
@@ -262,7 +264,7 @@ def test_replace_ands():
         with_input = "",
         run_on_directory = True)
     
-    expected_files = ['Brothers & Sisters - [05x16] - Home Is Where the Fort Is.avi']
+    expected_files = ['Brothers & Sisters - [05x16] - Home Is Where The Fort Is.avi']
 
     verify_out_data(out_data, expected_files)
 
@@ -294,7 +296,7 @@ def test_replace_ands_in_output_also():
         with_input = "",
         run_on_directory = True)
 
-    expected_files = ['Brothers and Sisters - [05x16] - Home Is Where the Fort Is.avi']
+    expected_files = ['Brothers and Sisters - [05x16] - Home Is Where The Fort Is.avi']
 
     verify_out_data(out_data, expected_files)
 
@@ -407,7 +409,7 @@ def test_unicode_normalization():
         with_input = "",
         run_on_directory = True)
 
-    expected_files = ["Carnivale - [01x11] - The Day of the Dead.avi"]
+    expected_files = ["Carnivale - [01x11] - The Day Of The Dead.avi"]
 
     verify_out_data(out_data, expected_files)
 

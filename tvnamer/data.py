@@ -48,12 +48,21 @@ def _apply_replacements_output(cfile):
     """
     return _apply_replacements(cfile, Config['output_filename_replacements'])
 
+def convert_regex_to_lower(match_obj):
+    if match_obj.group() is not None:
+        return match_obj.group().lower()
 
 def transform_filename(fname):
     # type: (str) -> str
-
+    
     if Config['titlecase_filename']:
-        fname = fname.title()
+        filepath, fext = os.path.splitext(fname)
+        filepath = filepath.title()
+        filepath = filepath.title()
+        filepath = re.sub(r'\'S ', '\'s ', filepath)
+        filepath = re.sub(r' A ', ' a ', filepath)
+        filepath = re.sub(r'[0-9]{1,3}([X])[0-9]{1,3}', convert_regex_to_lower, filepath)
+        fname = filepath + fext.lower()
 
     if Config['lowercase_filename']:
         fname = fname.lower()

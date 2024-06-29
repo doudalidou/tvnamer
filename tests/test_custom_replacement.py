@@ -141,6 +141,7 @@ def test_replacing_ands():
         "replacement": " and "}
     ],
     "custom_filename_character_blacklist": ":",
+    "replace_invalid_characters_with": "_",
     "always_rename": true,
     "select_first": true
 }

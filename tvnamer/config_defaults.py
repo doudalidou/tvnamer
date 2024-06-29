@@ -100,7 +100,7 @@ defaults = {
     'overwrite_destination_on_move': False,
 
     # Verbose mode (debugging info)
-    'verbose': False,
+    'verbose': True,
 
     # Dry-run mode (do nothing)
     'dry_run': False,
@@ -127,7 +127,7 @@ defaults = {
     'filename_blacklist': [],
 
     # Force Windows safe filenames (always True on Windows)
-    'windows_safe_filenames': True,
+    'windows_safe_filenames': False,
 
     # Replace accented unicode characters with ASCII equivalents,
     # removing characters than can't be translated.
@@ -144,7 +144,7 @@ defaults = {
     'custom_filename_character_blacklist': '',
 
     # Replacement characters for invalid filename characters
-    'replace_invalid_characters_with': '-',
+    'replace_invalid_characters_with': '.',
 
     # Replacements performed on input file before parsing.
     'input_filename_replacements': [
@@ -221,24 +221,6 @@ defaults = {
 
     # Patterns to parse input filenames with
     'filename_patterns': [
-        # Show name/Season.Episode Episode name
-        r'''.*\/(?P<seriesname>[^\/]+)            # Show name
-        [\/]{1}                                   # Directory mark
-        (?P<seasonnumber>[0-9]{2})                # Season
-        [\._ -]                                   # Padding
-        (?P<episodenumber>[0-9]{2})[a-zA-Z]?      # Episode
-        [\._ -]                                   # Padding
-        (?P<episodename>.+)                       # Episode name
-        ''',
-
-        # Show name/Episode Episode name
-        r'''.*\/(?P<seriesname>[^\/]+)            # Show name
-        [\/]{1}                                   # Directory mark
-        (?P<episodenumber>[0-9]{2})[a-zA-Z]?      # Episode
-        [\._ -]                                   # Padding
-        (?P<episodename>.+)                       # Episode name
-        ''',
-
         # [group] Show - 01-02 [crc]
         r'''^.*\/\[(?P<group>.+?)\][ ]?               # group name, captured for [#100]
         (?P<seriesname>.*?)[ ]?[-_][ ]?          # show name, padding, spaces?
@@ -475,6 +457,24 @@ defaults = {
         (?P<episodenumber>[0-9]{1,3})            # 123
         [\._ -]                                  # More padding
         (?P<episodename>.+?)$                    # Episode name
+        ''',
+
+        # Show name/Season.Episode Episode name
+        r'''.*\/(?P<seriesname>[^\/]+)            # Show name
+        [\/]{1}                                   # Directory mark
+        (?P<seasonnumber>[0-9]{2})                # Season
+        [\._ -]                                   # Padding
+        (?P<episodenumber>[0-9]{2})[a-zA-Z]?      # Episode
+        [\._ -]                                   # Padding
+        (?P<episodename>.+)                       # Episode name
+        ''',
+
+        # Show name/Episode Episode name
+        r'''.*\/(?P<seriesname>[^\/]+)            # Show name
+        [\/]{1}                                   # Directory mark
+        (?P<episodenumber>[0-9]{2})[a-zA-Z]?      # Episode
+        [\._ -]                                   # Padding
+        (?P<episodename>.+)                       # Episode name
         ''',
 
     ],

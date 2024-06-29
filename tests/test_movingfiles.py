@@ -141,6 +141,8 @@ def test_with_invalid_seriesname():
     {"move_files_enable": true,
     "move_files_destination": "%(seriesname)s",
     "batch": true,
+    "replace_invalid_characters_with": "_",
+    "titlecase_filename": false,
     "windows_safe_filenames": true}
     """
 
@@ -148,7 +150,7 @@ def test_with_invalid_seriesname():
         with_files = ['csi.cyber.s01e03.avi'],
         with_config = conf)
 
-    expected_files = ['CSI_ Cyber/CSI_ Cyber - [01x03] - Killer En Route.avi']
+    expected_files = ['CSI_ Cyber/Csi_ Cyber - [01x03] - Killer En Route.avi']
 
     verify_out_data(out_data, expected_files)
 
@@ -162,6 +164,8 @@ def test_with_invalid_seriesname_test2():
     {"move_files_enable": true,
     "move_files_destination": "%(seriesname)s",
     "batch": true,
+    "replace_invalid_characters_with": "_",
+    "titlecase_filename": false,
     "move_files_fullpath_replacements": [
          {"is_regex": true,
           "match": "CSI_ Miami",

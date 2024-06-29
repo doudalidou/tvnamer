@@ -266,15 +266,14 @@ class FileParser(object):
         """Runs path via configured regex, extracting data from groups.
         Returns an EpisodeInfo instance containing extracted data.
         """
-        _, filename = os.path.split(self.path)
-
-        filename = _apply_replacements_input(filename)
         filename = _apply_replacements_input(self.path)
-        filename = self.path
+        LOG.debug("parsing file: %s", filename)
 
         for cmatcher in self.compiled_regexs:
             match = cmatcher.match(filename)
             if match:
+                LOG.debug("regex match with:")
+                LOG.debug(match.re.pattern)
                 namedgroups = match.groupdict().keys()
 
                 if 'episodenumber1' in namedgroups:
@@ -344,6 +343,8 @@ class FileParser(object):
 
                 if 'seriesname' in namedgroups:
                     seriesname = match.group('seriesname')
+                    LOG.debug("parsing seriesname: %s", seriesname)
+
                 else:
                     raise ConfigValueError(
                         "Regex must contain seriesname. Pattern was:\n"

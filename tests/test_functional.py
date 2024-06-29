@@ -40,9 +40,17 @@ def test_simple_multiple_files():
         'a nonsensical fake show - [12x24].avi',
          'Total Access 24_7 - [01x01] - Episode #1.avi']
 
+    conf = r"""
+    {
+    "replace_invalid_characters_with": "_"
+    }
+    """
+    
     out_data = run_tvnamer(
         with_files = input_files,
-        with_input = "y\n1\ny\n1\ny\n1\ny\ny\n")
+        with_input = "y\n1\ny\n1\ny\n1\ny\ny\n",
+        with_config = conf
+    )
 
     verify_out_data(out_data, expected_files)
 
@@ -67,9 +75,17 @@ def test_simple_batch_functionality():
 
         print("Expecting %r to turn into %r" % (
             curtest['in'], curtest['expected']))
+        
+        conf = r"""
+        {
+        "replace_invalid_characters_with": "_"
+        }
+        """
+        
         out_data = run_tvnamer(
             with_files = [curtest['in'], ],
             with_flags = ['--batch'],
+            with_config = conf
         )
         verify_out_data(out_data, [curtest['expected'], ])
 
@@ -91,10 +107,17 @@ def test_interactive_always_option():
         'a nonsensical fake show - [12x24].avi',
          'Total Access 24_7 - [01x01] - Episode #1.avi']
 
+    conf = r"""
+    {
+      "replace_invalid_characters_with": "_"
+    }
+    """
+
     out_data = run_tvnamer(
         with_files = input_files,
         with_flags = ["--selectfirst"],
-        with_input = "a\n")
+        with_input = "a\n",
+        with_config = conf)
 
     verify_out_data(out_data, expected_files)
 
@@ -117,9 +140,16 @@ def test_unicode_in_inputname():
     expected_files = [
         'The Big Bang Theory - [02x07] - The Panty Pin\u0303ata Polarization.avi']
 
+    conf = r"""
+    {
+      "normalize_unicode_filenames": false
+    }
+    """
+
     out_data = run_tvnamer(
         with_files = input_files,
-        with_flags = ["--batch"])
+        with_flags = ["--batch"],
+        with_config = conf)
 
     verify_out_data(out_data, expected_files)
 
@@ -174,9 +204,16 @@ def test_not_overwritting_unicode_filename():
         'The Big Bang Theory - S02E07.avi',
         'The Big Bang Theory - [02x07] - The Panty Pin\u0303ata Polarization.avi']
 
+    conf = r"""
+    {
+      "normalize_unicode_filenames": false
+    }
+    """
+
     out_data = run_tvnamer(
         with_files = input_files,
-        with_flags = ['--batch'])
+        with_flags = ['--batch'],
+        with_config = conf)
 
     verify_out_data(out_data, expected_files)
 
