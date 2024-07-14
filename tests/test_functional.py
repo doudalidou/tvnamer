@@ -42,6 +42,7 @@ def test_simple_multiple_files():
 
     conf = r"""
     {
+    "titlecase_filename": false,
     "replace_invalid_characters_with": "_"
     }
     """
@@ -109,6 +110,7 @@ def test_interactive_always_option():
 
     conf = r"""
     {
+      "titlecase_filename": false,
       "replace_invalid_characters_with": "_"
     }
     """
@@ -142,6 +144,7 @@ def test_unicode_in_inputname():
 
     conf = r"""
     {
+      "titlecase_filename": false,
       "normalize_unicode_filenames": false
     }
     """
@@ -164,9 +167,16 @@ def test_unicode_in_search_results():
     expected_files = [
         'Psych - [04x11] - Thrill Seekers and Hell-Raisers.avi']
 
+    conf = r"""
+    {
+      "titlecase_filename": false
+    }
+    """
+
     out_data = run_tvnamer(
         with_files = input_files,
-        with_input = '1\ny\n')
+        with_input = '1\ny\n',
+        with_config = conf)
 
     verify_out_data(out_data, expected_files)
 

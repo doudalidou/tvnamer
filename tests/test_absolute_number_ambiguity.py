@@ -14,6 +14,7 @@ def test_ambiguity_fix():
 
     conf = """
     {"always_rename": true,
+    "titlecase_filename": false,
     "select_first": true}
     """
 

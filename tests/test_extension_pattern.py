@@ -46,6 +46,7 @@ def test_extension_pattern_custom():
     conf = r"""
     {"extension_pattern": "((\\.|-)(eng|cze|EN|CZ)(?=\\.(sub|srt)))?(\\.[a-zA-Z0-9]+)$",
     "batch": true,
+    "titlecase_filename": false,
     "valid_extensions": ["avi", "srt"]}
     """
 

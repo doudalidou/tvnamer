@@ -30,7 +30,7 @@ def test_multiep_different_names():
         with_config = conf,
         with_input = "")
 
-    expected_files = ['Star Trek - Enterprise - [01x03-04] - Fight or Flight, Strange New World.avi']
+    expected_files = ['Star Trek - Enterprise - [01x03-04] - Fight Or Flight, Strange New World.avi']
 
     verify_out_data(out_data, expected_files)
 

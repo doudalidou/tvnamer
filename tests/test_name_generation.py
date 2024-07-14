@@ -86,7 +86,7 @@ def test_multi_episodes_continuous():
 
     assertEquals(
         ep.generate_filename(),
-        'Stargate SG-1 - [01x01-02] - Children of the Gods (1-2).avi')
+        'Stargate Sg-1 - [01x01-02] - Children Of The Gods (1-2).avi')
 
 
 def test_episode_numeric_title():
@@ -106,7 +106,7 @@ def test_episode_numeric_title():
 
     assertEquals(
         ep.generate_filename(),
-        'Star Trek TNG - [01x15] - 11001001.avi')
+        'Star Trek Tng - [01x15] - 11001001.avi')
 
 
 def test_multi_episodes_seperate():
@@ -124,7 +124,7 @@ def test_multi_episodes_seperate():
 
     assertEquals(
         ep.generate_filename(),
-        'Stargate SG-1 - [01x02-03] - Children of the Gods (2), The Enemy Within.avi')
+        'Stargate Sg-1 - [01x02-03] - Children Of The Gods (2), The Enemy Within.avi')
 
 
 def test_simple_no_ext():

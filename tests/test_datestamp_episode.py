@@ -16,6 +16,7 @@ def test_issue_56_dated_episode():
     conf = """
     {"batch": true,
     "select_first": true,
+    "titlecase_filename": false,
     "filename_with_episode":  "%(seriesname)s %(date)s - %(episodename)s%(ext)s"}
     """
 

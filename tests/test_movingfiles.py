@@ -142,7 +142,6 @@ def test_with_invalid_seriesname():
     "move_files_destination": "%(seriesname)s",
     "batch": true,
     "replace_invalid_characters_with": "_",
-    "titlecase_filename": false,
     "windows_safe_filenames": true}
     """
 
